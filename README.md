@@ -4,7 +4,6 @@ Système de vélo connecté basé sur un ESP32, avec un dashboard web temps rée
 
 + Sommaire
 Aperçu
-Architecture
 Stack technique
 Structure du dépôt
 Installation
@@ -22,13 +21,7 @@ Simulateur MQTT permettant de développer le frontend sans dépendre du matérie
 
 Toute la communication passe par un broker MQTT central — aucune dépendance BLE.
 
-+ Architecture
-  ESP32 (firmware)          📡 Broker MQTT              💻 Dashboard (React)
-   │ lit capteurs                │                            │
-   │ publie smartbike/data ─────►│──────────────────────────► │ s'abonne, affiche
-   │                              │                            │ 3D / jauges / carte
-   │◄──────────────────────────  │ ◄────────────────────────  │
-   │ écoute smartbike/blinker    │      publie commandes       │
+
 +Bloc	Rôle	Communication
 ESP32 (firmware)	Lit les capteurs, publie les données, écoute les commandes clignotants	MQTT (TCP 1883) via WiFi
 Broker MQTT	Relaie les messages entre ESP32 et client(s) web	MQTT natif (1883) + WebSocket (8083/8084)
